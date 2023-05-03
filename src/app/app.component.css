@@ -1,0 +1,43 @@
+@import url('https://fonts.cdnfonts.com/css/lovelo?styles=25962');
+
+.titulo{
+    display: flex;
+    justify-content: center;
+    font-family: 'Lovelo', sans-serif;
+    font-size: 60px;
+    color: #CE49EA;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: #000000;
+}
+
+select{
+    font-family: 'Lovelo', sans-serif;
+    font-size: 20px;
+}
+
+button{
+    font-family: 'Lovelo', sans-serif;
+    font-size: 20px;
+}
+
+input{
+    font-family: 'Lovelo', sans-serif;
+    font-size: 20px;
+}
+
+#linhaDeAdicionarTarefas{
+    display: flex;
+    justify-content: center;
+}
+
+#tarefasAdicionadas{
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Lovelo', sans-serif;
+    font-size: 20px;
+    margin-right: 17px;
+}
+
+html{
+    background-color: cornflowerblue;
+}
