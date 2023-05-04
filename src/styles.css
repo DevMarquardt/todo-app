@@ -1,1 +1,59 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.cdnfonts.com/css/lovelo?styles=25962');
+
+html {
+    background-color: cornflowerblue;
+}
+
+.titulo {
+    display: flex;
+    justify-content: center;
+    font-family: 'Lovelo', sans-serif;
+    font-size: 60px;
+    color: #CE49EA;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: #000000;
+}
+
+button,
+select {
+    font-family: 'Lovelo', sans-serif;
+    font-size: 20px;
+    background-color: transparent;
+    border-color: #000000;
+    border-style: solid;
+    background-color: #CE49EA;
+    outline: none;
+}
+
+input {
+    font-family: 'Lovelo', sans-serif;
+    font-size: 20px;
+    background-color: transparent;
+    border-color: #000000;
+    border-style: solid;
+    outline: none;
+}
+
+#linhaDeAdicionarTarefas {
+    display: flex;
+    justify-content: center;
+}
+
+#tarefasAdicionadas {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Lovelo', sans-serif;
+    font-size: 20px;
+    margin-right: 17px;
+}
+
+.fadeIn {
+    opacity: 1;
+    transition: opacity 0.5s ease-in;
+  }
+  
+.fadeOut {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+  

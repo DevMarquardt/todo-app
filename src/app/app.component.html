@@ -15,14 +15,8 @@
     <input 
         placeholder="Nome" onchange="this.value='';"
         [(ngModel)]="tarefa.nome">
-        <select name="selector" id="selector">
-          <option value="Todo">TODO</option>
-          <option value="Todo">DOING</option>
-          <option value="Todo">DONE</option>
-        </select>
   <button (click)="cadastrarTarefa()">Cadastrar </button>
   </div>
-  
   
   <div id="tarefasAdicionadas" *ngFor="let trf of tarefas">
     <h4>
@@ -31,9 +25,9 @@
       Nome da tarefa - {{trf.nome}}
       <br>
       <select name="selector" id="selector">
-        <option value="Todo">TODO</option>
-        <option value="Todo">DOING</option>
-        <option value="Todo">DONE</option>
+        <option value="todo">TODO</option>
+        <option value="doing">DOING</option>
+        <option value="done">DONE</option>
       </select>
     </h4>
     <button (click)="removerTarefa(trf.id)">Remover Tarefa</button>
