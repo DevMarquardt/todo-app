@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 interface Tarefa {
   id: number
   nome: string
+  categoria: string
 
 }
 @Component({
@@ -17,7 +18,8 @@ export class AppComponent {
   proximoId = 1;
 
   tarefa = {
-    nome: ''
+    nome: '',
+    categoria: ''
   }
 
   cadastrarTarefa(): void {
@@ -27,10 +29,12 @@ export class AppComponent {
     }
     const novaTarefa: Tarefa = {
       id: this.proximoId,
-      nome: this.tarefa.nome
+      nome: this.tarefa.nome,
+      categoria: this.tarefa.categoria
     };
     this.tarefas.push(novaTarefa);
     this.proximoId++;
+    console.log(this.tarefas)
     this.tarefa.nome = null
     localStorage.setItem('tarefas', JSON.stringify(this.tarefas));
   }
@@ -48,6 +52,10 @@ export class AppComponent {
       this.tarefas = JSON.parse(tarefasSalvas);
       this.proximoId = this.tarefas[this.tarefas.length - 1].id + 1;
     }
+  }
+
+  localStorage(){
+    localStorage.setItem('tarefas', JSON.stringify(this.tarefas));
   }
 
 }
