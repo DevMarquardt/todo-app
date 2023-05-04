@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body style="width: 100%;height: 100%;">
-  <H1 class="titulo">  
+  <H1 class="titulo">
     TODO APP
   </H1>
-  
+
   <div id="linhaDeAdicionarTarefas">
-    <input 
-        placeholder="Nome" onchange="this.value='';"
-        [(ngModel)]="tarefa.nome">
-  <button (click)="cadastrarTarefa()">Cadastrar </button>
+    <input placeholder="Nome" [(ngModel)]="tarefa.nome">
+    <button (click)="cadastrarTarefa()">Cadastrar </button>
   </div>
-  
+
   <div id="tarefasAdicionadas" *ngFor="let trf of tarefas">
     <h4>
       Número da tarefa - {{trf.id}}
@@ -33,4 +33,5 @@
     <button (click)="removerTarefa(trf.id)">Remover Tarefa</button>
   </div>
 </body>
+
 </html>

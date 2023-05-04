@@ -46,14 +46,4 @@ input {
     font-size: 20px;
     margin-right: 17px;
 }
-
-.fadeIn {
-    opacity: 1;
-    transition: opacity 0.5s ease-in;
-  }
-  
-.fadeOut {
-    opacity: 0;
-    transition: opacity 0.5s ease-out;
-}
   

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-interface Tarefa{
+interface Tarefa {
   id: number
   nome: string
 
@@ -16,28 +16,32 @@ export class AppComponent {
   tarefas: Tarefa[] = []
   proximoId = 1;
 
-  tarefa={
+  tarefa = {
     nome: ''
   }
 
-  cadastrarTarefa(): void { 
+  cadastrarTarefa(): void {
+    if (!this.tarefa.nome) {
+
+      return;
+    }
     const novaTarefa: Tarefa = {
       id: this.proximoId,
       nome: this.tarefa.nome
     };
     this.tarefas.push(novaTarefa);
     this.proximoId++;
+    this.tarefa.nome = null
     localStorage.setItem('tarefas', JSON.stringify(this.tarefas));
   }
-  
+
 
   removerTarefa(id: number): void {
     this.tarefas = this.tarefas.filter(tarefa => tarefa.id !== id);
-  
+
     localStorage.setItem('tarefas', JSON.stringify(this.tarefas));
   }
   
-
   ngOnInit() {
     const tarefasSalvas = localStorage.getItem('tarefas');
     if (tarefasSalvas) {
