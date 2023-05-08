@@ -8,13 +8,19 @@
   <title>Document</title>
 </head>
 
-<body style="width: 100%;height: 100%;">
-  <H1 class="titulo">
-    TODO APP
-  </H1>
 
+
+<body style="width: 100%;height: 100%;">
+
+  <header>
+    <H1 class="titulo">
+      TODO APP
+    </H1>
+  </header>
+  <br>
+  
   <div id="linhaDeAdicionarTarefas">
-    <input placeholder="Nome" [(ngModel)]="tarefa.nome">
+    <input maxLength="15" placeholder="Nome" [(ngModel)]="tarefa.nome">
     <select name="" id="" [(ngModel)]="tarefa.categoria">
       <option value="To do">To do</option>
       <option value="Doing">Doing</option>
@@ -25,7 +31,7 @@
 
   <div class="tarefasAdicionadas">
 
-    <div>
+    <div class="tarefa">
       <h1>To do</h1>
 
       <div *ngFor="let trf of tarefas;">
@@ -34,7 +40,7 @@
           <h3>
             Nome da tarefa: {{trf.nome}}
             <br>
-            Numéro da tarefa: {{trf.desc}}
+            Numéro da tarefa: {{trf.id}}
             <br>
             Categoria da tarefa: {{trf.categoria}}
             <br>
@@ -47,13 +53,13 @@
 
             <br>
 
-            <button (click)="removerTarefa(trf.id)">Apagar</button>
+            <button (click)="removerTarefa(trf.id)">Remover</button>
           </h3>
         </div>
       </div>
     </div>
 
-    <div>
+    <div class="tarefa">
       <h1>Doing</h1>
 
       <div *ngFor="let trf of tarefas;">
@@ -62,7 +68,7 @@
           <h3>
             Nome da tarefa: {{trf.nome}}
             <br>
-            Numéro da tarefa: {{trf.desc}}
+            Numéro da tarefa: {{trf.id}}
             <br>
             Categoria da tarefa: {{trf.categoria}}
             <br>
@@ -75,14 +81,14 @@
 
             <br>
 
-            <button (click)="removerTarefa(trf.id)">Apagar</button>
+            <button (click)="removerTarefa(trf.id)">Remover</button>
           </h3>
         </div>
       </div>
 
     </div>
 
-    <div>
+    <div class="tarefa">
       <h1>Done</h1>
 
       <div *ngFor="let trf of tarefas;">
@@ -91,7 +97,7 @@
           <h3>
             Nome da tarefa: {{trf.nome}}
             <br>
-            Numéro da tarefa: {{trf.desc}}
+            Numéro da tarefa: {{trf.id}}
             <br>
             Categoria da tarefa: {{trf.categoria}}
             <br>

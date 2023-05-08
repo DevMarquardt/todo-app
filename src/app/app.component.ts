@@ -41,9 +41,14 @@ export class AppComponent {
 
 
   removerTarefa(id: number): void {
-    this.tarefas = this.tarefas.filter(tarefa => tarefa.id !== id);
+    let confirmar = confirm("Você tem certeza que deseja remover essa tarefa?")
+    if(confirmar){
+      this.tarefas = this.tarefas.filter(tarefa => tarefa.id !== id);
 
-    localStorage.setItem('tarefas', JSON.stringify(this.tarefas));
+      localStorage.setItem('tarefas', JSON.stringify(this.tarefas));
+    }
+      else{
+    }
   }
   
   ngOnInit() {
