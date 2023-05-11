@@ -33,7 +33,7 @@ input {
     outline: none;
 }
 
-#linhaDeAdicionarTarefas {
+#linhaDeAdicionarTarefas, #linhaDeAdicionarCategorias {
     display: flex;
     justify-content: center;
 }
