@@ -67,3 +67,26 @@ header{
     justify-content: center;
 
 }
+
+.titulo2{
+    display: flex;
+    justify-content: center;
+    font-family: 'Lovelo', sans-serif;
+    font-size: 40px;
+    color: #90E9F0;
+    -webkit-text-stroke-width: 2px;
+}
+
+.categoriasAdicionadas {
+    display: flex;
+    justify-content: center;
+    font-family: 'Lovelo', sans-serif;
+    font-size: 20px;
+    margin-right: 17px;
+    color: #90E9F0;
+}
+
+.botaoCate{
+    display: flex;
+    justify-content: center;
+}

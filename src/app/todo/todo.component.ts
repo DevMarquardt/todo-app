@@ -58,6 +58,7 @@ export class TodoComponent{
     }
   }
 
+
   localStorage(){
     localStorage.setItem('tarefas', JSON.stringify(this.tarefas));
   }
