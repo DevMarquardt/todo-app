@@ -1,15 +1,39 @@
-<body style="width: 100%;height: 100%;">
-
+<body>
   <header>
-    <H1 class="titulo">
-      TODO APP
-    </H1>
+    <h1 class="titulo">TODO APP</h1>
   </header>
   <br>
-  <button><a routerLink="/categoria">Cadastrar tarefas</a></button>
+  <button><a routerLink="/categoria">Cadastrar categorias</a></button>
+  <br>
+  <br>
+  <h1 class="titulo2">Tarefas</h1>
+  <div id="linhaDeAdicionarCategorias">
+    <input maxLength="15" placeholder="Nome da tarefa" [(ngModel)]="tarefa.nome">
+    <select name="" id="" [(ngModel)]="tarefa.categoria">
+      <option *ngFor="let categoria of categorias" [value]="categoria.nome">{{ categoria.nome }}</option>
+    </select>
+    <button (click)="cadastrarTarefa()">Cadastrar</button>
+  </div>
 
-  <div id="linhaDeAdicionarTarefas">
-    <div *ngFor="let cate of categoria">
-        {{categoria.nome}}
+  <div class="tarefasAdicionadas">
+    <div *ngFor="let cate of categorias">
+      <h1 style="display:flex;justify-content:center">{{cate.nome}}</h1>
+      <div class="tarefa" *ngFor="let trf of tarefas;">
+        <div *ngIf="trf.categoria === cate.nome">
+          <h3>
+            Nome da tarefa: {{ trf.nome }}
+            <br>
+            Categoria da tarefa: {{ trf.categoria }}
+            <br>
+          </h3>
+          <div style="display:flex; justify-content:center;">
+            <button (click)="removerTarefa(trf.id)">Remover</button>
+            <select [(ngModel)]="trf.categoria" (change)="localStorage()">
+              <option *ngFor="let cates of categorias">{{cates.nome}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+</body>

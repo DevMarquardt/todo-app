@@ -1,92 +1,95 @@
 @import url('https://fonts.cdnfonts.com/css/lovelo?styles=25962');
 
-body{
-    background-color:#380077;
+body {
+    background-color: #380077;
     margin: 0;
-}
-
-.titulo {
+  }
+  
+  .titulo {
     display: flex;
     justify-content: center;
     font-family: 'Lovelo', sans-serif;
     font-size: 60px;
     color: #90E9F0;
     -webkit-text-stroke-width: 2px;
-}
-
-button,
-select {
+  }
+  
+  button,
+  select {
     font-family: 'Lovelo', sans-serif;
     font-size: 20px;
     border-color: #000000 ;
     border-style: solid;
     background-color: #90E9F0;
     outline: none;
-}
+  }
 
-input {
+  input {
     font-family: 'Lovelo', sans-serif;
     font-size: 20px;
     background-color: #90E9F0;
     border-color: #000000;
     border-style: solid;
     outline: none;
-}
-
-#linhaDeAdicionarTarefas, #linhaDeAdicionarCategorias {
+  }
+  
+  #linhaDeAdicionarTarefas,
+  #linhaDeAdicionarCategorias {
     display: flex;
     justify-content: center;
-}
-
-.tarefasAdicionadas {
-    display: flex;
-    justify-content: space-between;
-    font-family: 'Lovelo', sans-serif;
-    font-size: 20px;
-    margin-right: 17px;
-    color: #90E9F0;
-}
+  }
   
-.tarefa{
+  .tarefasAdicionadas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-family: 'Lovelo', sans-serif;
+    font-size: 10px;
+    justify-content: space-around;
+    color: #90E9F0;
+  }
+  
+  .tarefa {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.categoria{
+  }
+  
+  .categoriasAdicionadas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-family: 'Lovelo', sans-serif;
+    font-size: 20px;
+    justify-content: space-around;
+    color: #90E9F0;
+  }
+  
+  .categoria {
     display: flex;
     justify-content: space-around;
     width: 100%;
     height: 100%;
-}
-
-header{
+  }
+  
+  header {
     background-color: black;
-    width: 100% ;
+    width: 100%;
     display: flex;
     justify-content: center;
-
-}
-
-.titulo2{
+  }
+  
+  .titulo2 {
     display: flex;
     justify-content: center;
     font-family: 'Lovelo', sans-serif;
     font-size: 40px;
     color: #90E9F0;
     -webkit-text-stroke-width: 2px;
-}
-
-.categoriasAdicionadas {
+  }
+  
+  .botaoCate {
     display: flex;
     justify-content: center;
-    font-family: 'Lovelo', sans-serif;
-    font-size: 20px;
-    margin-right: 17px;
-    color: #90E9F0;
-}
-
-.botaoCate{
-    display: flex;
-    justify-content: center;
-}
+  }
+  

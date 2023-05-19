@@ -1,26 +1,25 @@
 <body>
-    <header>
-      <h1 class="titulo">TODO APP</h1>
-    </header>
-    <br>
-    <button><a routerLink="/todo">Cadastrar tarefas</a></button>
-    <br>
-    <br>
-    <h1 class="titulo2">Categorias</h1>
-    <div id="linhaDeAdicionarCategorias">
-      <input maxLength="15" placeholder="Nome da categoria" [(ngModel)]="categoria.nome">
-      <button (click)="cadastrarCategoria()">Cadastrar</button>
-    </div>
-    <div class="categoriasAdicionadas" *ngFor="let cate of categorias;">
-      <div class="tarefa">
-        <div *ngIf="categoria.nome === categoria.nome">
-
-          <h3>
-            {{cate.nome}}
-            <br>
-            <button (click)="removerCategoria(cate.idcate)">Remover</button>
-          </h3>
-        </div>
+  <header>
+    <h1 class="titulo">TODO APP</h1>
+  </header>
+  <br>
+  <button><a routerLink="/todo">Cadastrar tarefas</a></button>
+  <br>
+  <br>
+  <h1 class="titulo2">Categorias</h1>
+  <div id="linhaDeAdicionarCategorias">
+    <input maxLength="15" placeholder="Nome da categoria" [(ngModel)]="categoria.nome">
+    <button (click)="cadastrarCategoria()">Cadastrar</button>
+  </div>
+  <div class="categoriasAdicionadas">
+    <div class="tarefa" *ngFor="let cate of categorias;">
+      <div *ngIf="categoria.nome === categoria.nome">
+        <h3 style="display:flex;justify-content:center">
+          {{cate.nome}}
+          <br>
+        </h3>
+        <button (click)="removerCategoria(cate.idcate)">Remover</button>
       </div>
     </div>
-  </body>
+  </div>
+</body>

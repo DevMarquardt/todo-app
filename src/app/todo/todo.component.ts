@@ -1,29 +1,32 @@
 import { Component } from "@angular/core";
 
 interface Tarefa {
-    id: number
-    nome: string
-    categoria: string
-  
-  }
+  id: number;
+  nome: string;
+  categoria: string;
+}
+
+interface Categoria {
+  idcate: number;
+  nome: string;
+}
 
 @Component({
-    templateUrl: 'todo.component.html'
+  templateUrl: 'todo.component.html'
 })
-export class TodoComponent{
- title = 'todo-app';
-  nome: string = '';
-  tarefas: Tarefa[] = []
+export class TodoComponent {
+  title = 'todo-app';
+  tarefas: Tarefa[] = [];
+  categorias: Categoria[] = [];
   proximoId = 1;
 
   tarefa = {
     nome: '',
     categoria: ''
-  }
+  };
 
   cadastrarTarefa(): void {
-    if (!this.tarefa.nome) {
-
+    if (!this.tarefa.categoria || !this.tarefa.nome) {
       return;
     }
     const novaTarefa: Tarefa = {
@@ -33,34 +36,34 @@ export class TodoComponent{
     };
     this.tarefas.push(novaTarefa);
     this.proximoId++;
-    console.log(this.tarefas)
-    this.tarefa.nome = null
+    this.tarefa.nome = '';
     localStorage.setItem('tarefas', JSON.stringify(this.tarefas));
   }
 
-
   removerTarefa(id: number): void {
-    let confirmar = confirm("Você tem certeza que deseja remover essa tarefa?")
-    if(confirmar){
+    let confirmar = confirm("Você tem certeza que deseja remover essa tarefa?");
+    if (confirmar) {
       this.tarefas = this.tarefas.filter(tarefa => tarefa.id !== id);
-
       localStorage.setItem('tarefas', JSON.stringify(this.tarefas));
     }
-      else{
-    }
   }
-  
+
   ngOnInit() {
     const tarefasSalvas = localStorage.getItem('tarefas');
     if (tarefasSalvas) {
       this.tarefas = JSON.parse(tarefasSalvas);
-      this.proximoId = this.tarefas[this.tarefas.length - 1].id + 1;
+      if (this.tarefas.length > 0) {
+        this.proximoId = this.tarefas[this.tarefas.length - 1].id + 1;
+      }
+    }
+
+    const categoriasSalvas = localStorage.getItem('categorias');
+    if (categoriasSalvas) {
+      this.categorias = JSON.parse(categoriasSalvas);
     }
   }
 
-
-  localStorage(){
+  localStorage() {
     localStorage.setItem('tarefas', JSON.stringify(this.tarefas));
   }
-
 }

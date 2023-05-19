@@ -1,8 +1,13 @@
 import { Component } from "@angular/core";
 
 interface Categoria {
-  idcate: number
-  nome: string
+  idcate: number;
+  nome: string;
+}
+interface Tarefa {
+  id: number;
+  nome: string;
+  categoria: string;
 }
 
 @Component({
@@ -10,11 +15,18 @@ interface Categoria {
 })
 export class CategoriaComponent {
   title = 'todo-app';
-  categorias: Categoria[] = []
+  categorias: Categoria[] = [];
   proximoId = 1;
   categoria = {
     nome: '',
-  }
+    
+  };
+  tarefas: Tarefa[] = [];
+
+  tarefa = {
+    nome: '',
+    categoria: ''
+  };
 
   cadastrarCategoria(): void {
     if (!this.categoria.nome) {
@@ -27,17 +39,16 @@ export class CategoriaComponent {
     this.categorias.push(novaCategoria);
     this.proximoId++;
     this.categoria.nome = '';
-    localStorage.setItem('categorias', JSON.stringify(this.categorias));
+    this.localStorage();
   }
-  
-  removerCategoria(idcate: number): void {
-    let confirmar = confirm("Você tem certeza que deseja remover essa categoria?")
-    if(confirmar){
-      this.categorias = this.categorias.filter(categoria => categoria.idcate !== idcate);
 
-      localStorage.setItem('categorias', JSON.stringify(this.categorias));
-    }
-      else{
+  removerCategoria(idcate: number, id: number): void {
+    let confirmar = confirm("Você tem certeza que deseja remover essa categoria?")
+    if (confirmar) {
+      this.categorias = this.categorias.filter(categoria => categoria.idcate !== idcate);
+      this.localStorage();
+      this.tarefas = this.tarefas.filter(tarefa => tarefa.id !== id);
+      localStorage.setItem('tarefas', JSON.stringify(this.tarefas));
     }
   }
 
@@ -45,11 +56,14 @@ export class CategoriaComponent {
     const categoriasSalvas = localStorage.getItem('categorias');
     if (categoriasSalvas) {
       this.categorias = JSON.parse(categoriasSalvas);
-      this.proximoId = this.categorias[this.categorias.length - 1].idcate+ 1;
+      if (this.categorias.length > 0) {
+        this.proximoId = this.categorias[this.categorias.length - 1].idcate + 1;
+      }
     }
   }
+  
 
-  localStorage(){
+  localStorage() {
     localStorage.setItem('categorias', JSON.stringify(this.categorias));
   }
 }
