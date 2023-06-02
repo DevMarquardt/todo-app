@@ -20,6 +20,9 @@ export class TodoComponent {
   categorias: Categoria[] = [];
   proximoId = 1;
 
+    categoriaDrop : Categoria
+    tarefaDrop: Tarefa
+
   tarefa = {
     nome: '',
     categoria: ''
@@ -65,5 +68,14 @@ export class TodoComponent {
 
   localStorage() {
     localStorage.setItem('tarefas', JSON.stringify(this.tarefas));
+  }
+
+  allowDrop(cate){
+   this.tarefaDrop.categoria = cate;
+   localStorage.setItem('tarefas', JSON.stringify(this.tarefas));
+  }
+
+  drag(cate){
+   this.tarefaDrop = cate;
   }
 }
