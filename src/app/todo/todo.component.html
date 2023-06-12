@@ -16,16 +16,19 @@
   </div>
 
   <div class="tarefasAdicionadas">
-    <div *ngFor="let cate of categorias" (dragover) = "allowDrop(cate.nome)">
-      <h1 style="display:flex;justify-content:center">{{cate.nome}}</h1>
-      <div class="tarefa" draggable="true" *ngFor="let trf of tarefas;" (dragstart) = "drag(trf)">
-        <div *ngIf="trf.categoria === cate.nome">
-          <h3>
-            Nome da tarefa: {{ trf.nome }}
-            <br>
-          </h3>
-          <div style="display:flex; justify-content:center;">
-            <button (click)="removerTarefa(trf.id)">Remover</button>
+    <div *ngFor="let cate of categorias" (dragover)="allowDrop(cate.nome, $event)" (drop)="drop($event)">
+      <h1 style="display:flex;justify-content:center">{{ cate.nome }}</h1>
+      <div *ngFor="let trf of tarefas; index as index">
+        <div class="tarefa" *ngIf="trf.categoria === cate.nome">
+          
+          <div draggable="true" (dragstart)="drag(trf)" (drop)="dropEvent($event, index)">
+            <h3>
+              Nome da tarefa: {{ trf.nome }}
+              <br>
+            </h3>
+            <div style="display:flex; justify-content:center;">
+              <button (click)="removerTarefa(trf.id)">Remover</button>
+            </div>
           </div>
         </div>
       </div>

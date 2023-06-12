@@ -22,6 +22,7 @@ export class TodoComponent {
 
     categoriaDrop : Categoria
     tarefaDrop: Tarefa
+    indexDrop: number;
 
   tarefa = {
     nome: '',
@@ -70,12 +71,23 @@ export class TodoComponent {
     localStorage.setItem('tarefas', JSON.stringify(this.tarefas));
   }
 
-  allowDrop(cate){
+  allowDrop(cate, event: Event){
+   event.preventDefault();
    this.tarefaDrop.categoria = cate;
    localStorage.setItem('tarefas', JSON.stringify(this.tarefas));
   }
 
   drag(cate){
    this.tarefaDrop = cate;
+  }
+
+  dropEvent(event : Event, index : number) : void{
+    event.preventDefault();
+    this.indexDrop = index;
+  }
+  
+  drop(event : Event): void{
+    this.tarefas.splice(this.tarefas.indexOf(this.tarefaDrop), 1);
+    this.tarefas.splice(this.indexDrop, 0, this.tarefaDrop);
   }
 }
