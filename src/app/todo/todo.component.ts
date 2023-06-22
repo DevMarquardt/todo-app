@@ -1,4 +1,6 @@
 import { Component } from "@angular/core";
+import { User } from 'src/models/users/user';
+import { UserRepository } from 'src/repositories/user.repository';
 
 interface Tarefa {
   id: number;
@@ -16,6 +18,19 @@ interface Categoria {
 })
 export class TodoComponent {
   title = 'todo-app';
+  private userId: string = 'diogo.defante';
+  private users: User[] = [];
+  user!: User;
+
+  constructor(
+    private userRepository: UserRepository
+  ) {
+    this.users = this.userRepository.getUsers();
+    this.user = this.getUsuarioLogado();
+    console.log(this.user);
+  }
+
+  
   tarefas: Tarefa[] = [];
   categorias: Categoria[] = [];
   proximoId = 1;
@@ -29,6 +44,14 @@ export class TodoComponent {
     categoria: ''
   };
 
+      removerTarefa(id: number): void {
+    let confirmar = confirm("Você tem certeza que deseja remover essa tarefa?");
+    if (confirmar) {
+      this.tarefas = this.tarefas.filter(tarefa => tarefa.id !== id);
+      localStorage.setItem('tarefas', JSON.stringify(this.tarefas));
+    }
+  }
+  
   cadastrarTarefa(): void {
     if (!this.tarefa.categoria || !this.tarefa.nome) {
       return;
@@ -44,12 +67,41 @@ export class TodoComponent {
     localStorage.setItem('tarefas', JSON.stringify(this.tarefas));
   }
 
-  removerTarefa(id: number): void {
-    let confirmar = confirm("Você tem certeza que deseja remover essa tarefa?");
-    if (confirmar) {
-      this.tarefas = this.tarefas.filter(tarefa => tarefa.id !== id);
-      localStorage.setItem('tarefas', JSON.stringify(this.tarefas));
+
+  adicionarTarefa(cadastrarTarefa): void {
+    if (!this.hasPermission('Add')) {
+      alert("Você não possui permissão para fazer isso")  
+      return;
     }
+    cadastrarTarefa();
+  }
+
+  editarTarefa(): void {
+    if (!this.hasPermission('Edit')) {
+      alert("Você não possui permissão para fazer isso")  
+      return;
+    }
+    //editarTarefa();
+  }
+
+  removeTarefa(removerTarefa): void {
+    if (!this.hasPermission('Remove')) {
+      alert("Você não possui permissão para fazer isso")  
+      return;
+    }
+    removerTarefa();
+  }
+
+  hasPermission(permission: string): boolean {
+    return this.user.cardPermissions.some((cardPermission) => {
+      return cardPermission === permission;
+    });
+  }
+
+  private getUsuarioLogado(): User {
+    return this.users.find((user) => {
+      return user.id === this.userId
+    }) as User;
   }
 
   ngOnInit() {

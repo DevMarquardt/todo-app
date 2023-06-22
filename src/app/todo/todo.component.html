@@ -12,7 +12,7 @@
     <select name="" id="" [(ngModel)]="tarefa.categoria">
       <option *ngFor="let categoria of categorias" [value]="categoria.nome">{{ categoria.nome }}</option>
     </select>
-    <button (click)="cadastrarTarefa()">Cadastrar</button>
+    <button (click)="adicionarTarefa()" [disabled]="!hasPermission('Add')">Cadastrar</button>
   </div>
 
   <div class="tarefasAdicionadas">
@@ -27,7 +27,8 @@
               <br>
             </h3>
             <div style="display:flex; justify-content:center;">
-              <button (click)="removerTarefa(trf.id)">Remover</button>
+              <button (click)="editarTarefa()" [disabled]="!hasPermission('Edit')">Editar</button>
+              <button (click)="removerTarefa(trf.id)" [disabled]="!hasPermission('Remove')">Remover</button>
             </div>
           </div>
         </div>
