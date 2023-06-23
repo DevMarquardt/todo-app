@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { CategoriaComponent } from 'src/app/categoria/categoria.component';
 import { TodoComponent } from 'src/app/todo/todo.component';
 import { UserRepository } from 'src/repositories/user.repository';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthGuardService } from 'src/services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -16,10 +18,12 @@ import { UserRepository } from 'src/repositories/user.repository';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [
     UserRepository,
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })

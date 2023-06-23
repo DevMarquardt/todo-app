@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { User } from 'src/models/users/user';
 import { UserRepository } from 'src/repositories/user.repository';
 
+
 interface Tarefa {
   id: number;
   nome: string;
@@ -25,9 +26,11 @@ export class TodoComponent {
   constructor(
     private userRepository: UserRepository
   ) {
-    this.users = this.userRepository.getUsers();
-    this.user = this.getUsuarioLogado();
-    console.log(this.user);
+    userRepository.getUsers().subscribe({
+      next: (value) =>{
+        console.log(value)
+      }
+    })
   }
 
   
@@ -51,7 +54,7 @@ export class TodoComponent {
       localStorage.setItem('tarefas', JSON.stringify(this.tarefas));
     }
   }
-  
+
   cadastrarTarefa(): void {
     if (!this.tarefa.categoria || !this.tarefa.nome) {
       return;
@@ -142,4 +145,6 @@ export class TodoComponent {
     this.tarefas.splice(this.tarefas.indexOf(this.tarefaDrop), 1);
     this.tarefas.splice(this.indexDrop, 0, this.tarefaDrop);
   }
+
+
 }
