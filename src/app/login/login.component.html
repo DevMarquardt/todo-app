@@ -1,0 +1,31 @@
+<body>
+    <header>
+        <div>
+            <div class="logo">
+                <a href="http://localhost:4200/login">Todo App</a>
+            </div>    
+        </div>
+
+        <div>
+            <div class="rotas">
+                <a href="http://localhost:4200/login">Registrar</a>
+                <a href="http://localhost:4200/registrar">Logar</a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="containerLogin">
+            <div class="boxLogin">
+                <h1 style="display:flex; justify-content: center;">Login</h1>
+                <div class="inputsLogin">
+                    <input type="text" name="" id="" placeholder="ID" [(ngModel)]="id">
+                    <input type="password" name="" id="" placeholder="Password" [(ngModel)]="password">
+                    <div class="confirmarLogin">
+                        <button (click)="logar()">Entrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>

@@ -3,6 +3,7 @@ import { Route, RouterModule } from "@angular/router";
 import { CategoriaComponent } from "src/app/categoria/categoria.component";
 import { TodoComponent } from "src/app/todo/todo.component";
 import { AuthGuardService } from "src/services/auth-guard.service";
+import { LoginComponent } from "./login/login.component";
 
 const rotas:Route[] = [
     {
@@ -13,6 +14,12 @@ const rotas:Route[] = [
         path: 'todo',
         component: TodoComponent,
         canActivate: [AuthGuardService]
+    },
+
+    {
+        path: 'login',
+        component: LoginComponent
+
     },
     {
         path:'',

@@ -71,35 +71,35 @@ export class TodoComponent {
   }
 
 
-  adicionarTarefa(cadastrarTarefa): void {
-    if (!this.hasPermission('Add')) {
-      alert("Você não possui permissão para fazer isso")  
-      return;
-    }
-    cadastrarTarefa();
-  }
+  // adicionarTarefa(cadastrarTarefa): void {
+  //   if (!this.hasPermission('Add')) {
+  //     alert("Você não possui permissão para fazer isso")  
+  //     return;
+  //   }
+  //   cadastrarTarefa();
+  // }
 
-  editarTarefa(): void {
-    if (!this.hasPermission('Edit')) {
-      alert("Você não possui permissão para fazer isso")  
-      return;
-    }
-    //editarTarefa();
-  }
+  // editarTarefa(): void {
+  //   if (!this.hasPermission('Edit')) {
+  //     alert("Você não possui permissão para fazer isso")  
+  //     return;
+  //   }
+  //   //editarTarefa();
+  // }
 
-  removeTarefa(removerTarefa): void {
-    if (!this.hasPermission('Remove')) {
-      alert("Você não possui permissão para fazer isso")  
-      return;
-    }
-    removerTarefa();
-  }
+  // removeTarefa(removerTarefa): void {
+  //   if (!this.hasPermission('Remove')) {
+  //     alert("Você não possui permissão para fazer isso")  
+  //     return;
+  //   }
+  //   removerTarefa();
+  // }
 
-  hasPermission(permission: string): boolean {
-    return this.user.cardPermissions.some((cardPermission) => {
-      return cardPermission === permission;
-    });
-  }
+  // hasPermission(permission: string): boolean {
+  //   return this.user.cardPermissions.some((cardPermission) => {
+  //     return cardPermission === permission;
+  //   });
+  // }
 
   private getUsuarioLogado(): User {
     return this.users.find((user) => {
