@@ -1,0 +1,33 @@
+<body>
+    <header>
+        <div>
+            <div class="logo">
+                <a href="http://localhost:4200/registrar">Todo App</a>
+            </div>    
+        </div>
+
+        <div>
+            <div class="rotas">
+                <a href="http://localhost:4200/login">Logar</a>
+                <a href="http://localhost:4200/registrar">Registrar</a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="containerLogin">
+            <div class="boxLogin">
+                <h1 style="display:flex; justify-content: center;">Registrar</h1>
+                <div class="inputsLogin">
+                    <input type="text" name="" id="" placeholder="Nome de usuario" [(ngModel)]="nome">
+                    <input type="text" name="" id="" placeholder="Nome de usuario unico" [(ngModel)]="id">
+                    <input type="email" name="" id="" placeholder="Email" [(ngModel)]="email">
+                    <input type="password" name="" id="" placeholder="Senha" [(ngModel)]="password">
+                    <div class="confirmarLogin">
+                        <button (click)="cadastro()">Registrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>

@@ -9,13 +9,16 @@ import { UserRepository } from 'src/repositories/user.repository';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuardService } from 'src/services/auth-guard.service';
 import { LoginComponent } from './login/login.component';
+import { cadastroComponent } from "./registrar/registrar.component"
 
 @NgModule({
   declarations: [
     AppComponent,
     CategoriaComponent,
     TodoComponent,
-    LoginComponent
+    LoginComponent,
+    cadastroComponent
+
   ],
   imports: [
     BrowserModule,
