@@ -8,7 +8,7 @@ import { UserRepository } from "src/repositories/user.repository";
     styleUrls: ['registrar.component.css']
 })
 
-export class cadastroComponent{
+export class CadastroComponent {
 
     private users: User[] = [];
     user!: User;
@@ -18,15 +18,13 @@ export class cadastroComponent{
             next: (value) => {
                 this.users = value
             },
-          })
-     }
-
+        })
+    }
 
     nome: string
     id: string
     email: string
     password: string
-
 
     cadastro(): void {
         let verificaUser: boolean = true
@@ -37,30 +35,25 @@ export class cadastroComponent{
             email: this.email,
             password: this.password
         }
-        
 
         this.users.forEach(element => {
-            if(element.id === this.id){
+            if (element.id === this.id) {
                 alert('User ja cadastrado')
                 verificaUser = false
             }
         });
 
-        if(verificaUser === true){
+        if (verificaUser === true) {
             alert("Cadastrado com sucesso")
-            this.http.post<User[]>('http://localhost:4300/users', user).subscribe((req)=>{})
+            this.http.post<User[]>('http://localhost:4300/users', user).subscribe((req) => { })
             console.log(user)
             window.location.replace('http://localhost:4200/login')
         }
-
 
         this.nome = ''
         this.id = ''
         this.email = ''
         this.password = ''
 
-
     }
-
-
 }

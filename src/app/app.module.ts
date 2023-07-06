@@ -9,7 +9,8 @@ import { UserRepository } from 'src/repositories/user.repository';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuardService } from 'src/services/auth-guard.service';
 import { LoginComponent } from './login/login.component';
-import { cadastroComponent } from "./registrar/registrar.component"
+import { CadastroComponent } from "./registrar/registrar.component";
+import { CookieService } from 'src/services/cookie.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { cadastroComponent } from "./registrar/registrar.component"
     CategoriaComponent,
     TodoComponent,
     LoginComponent,
-    cadastroComponent
+    CadastroComponent
 
   ],
   imports: [
@@ -28,7 +29,8 @@ import { cadastroComponent } from "./registrar/registrar.component"
   ],
   providers: [
     UserRepository,
-    AuthGuardService
+    AuthGuardService,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

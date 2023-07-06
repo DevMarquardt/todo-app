@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { User } from 'src/models/users/user';
 import { UserRepository } from 'src/repositories/user.repository';
+import { CookieService } from "src/services/cookie.service";
 
 
 interface Tarefa {
@@ -24,7 +25,8 @@ export class TodoComponent {
   user!: User;
 
   constructor(
-    private userRepository: UserRepository
+    private userRepository: UserRepository,
+    private cookie: CookieService
   ) {
     userRepository.getUsers().subscribe({
       next: (value) =>{
@@ -51,11 +53,11 @@ export class TodoComponent {
     let confirmar = confirm("Você tem certeza que deseja remover essa tarefa?");
     if (confirmar) {
       this.tarefas = this.tarefas.filter(tarefa => tarefa.id !== id);
-      localStorage.setItem('tarefas', JSON.stringify(this.tarefas));
+      this.cookie.setCookie('tarefas', JSON.stringify(this.tarefas), 1)
     }
   }
 
-  cadastrarTarefa(): void {
+  adicionarTarefa(): void {
     if (!this.tarefa.categoria || !this.tarefa.nome) {
       return;
     }
@@ -67,39 +69,39 @@ export class TodoComponent {
     this.tarefas.push(novaTarefa);
     this.proximoId++;
     this.tarefa.nome = '';
-    localStorage.setItem('tarefas', JSON.stringify(this.tarefas));
+    this.cookie.setCookie('tarefas', JSON.stringify(this.tarefas), 1)
   }
 
 
-  // adicionarTarefa(cadastrarTarefa): void {
-  //   if (!this.hasPermission('Add')) {
-  //     alert("Você não possui permissão para fazer isso")  
-  //     return;
-  //   }
-  //   cadastrarTarefa();
-  // }
+  //  adicionarTarefa(cadastrarTarefa): void {
+  //    if (!this.hasPermission('Add')) {
+  //      alert("Você não possui permissão para fazer isso")  
+  //      return;
+  //    }
+  //    cadastrarTarefa();
+  //  }
 
-  // editarTarefa(): void {
-  //   if (!this.hasPermission('Edit')) {
-  //     alert("Você não possui permissão para fazer isso")  
-  //     return;
-  //   }
-  //   //editarTarefa();
-  // }
+  //  editarTarefa(): void {
+  //    if (!this.hasPermission('Edit')) {
+  //      alert("Você não possui permissão para fazer isso")  
+  //      return;
+  //    }
+  //    editarTarefa();
+  //  }
 
-  // removeTarefa(removerTarefa): void {
-  //   if (!this.hasPermission('Remove')) {
-  //     alert("Você não possui permissão para fazer isso")  
-  //     return;
-  //   }
-  //   removerTarefa();
-  // }
+  //  removeTarefa(removerTarefa): void {
+  //    if (!this.hasPermission('Remove')) {
+  //      alert("Você não possui permissão para fazer isso")  
+  //      return;
+  //    }
+  //    removerTarefa();
+  //  }
 
-  // hasPermission(permission: string): boolean {
-  //   return this.user.cardPermissions.some((cardPermission) => {
-  //     return cardPermission === permission;
-  //   });
-  // }
+  //  hasPermission(permission: string): boolean {
+  //    return this.user.cardPermissions.some((cardPermission) => {
+  //      return cardPermission === permission;
+  //    });
+  //  }
 
   private getUsuarioLogado(): User {
     return this.users.find((user) => {
@@ -108,7 +110,7 @@ export class TodoComponent {
   }
 
   ngOnInit() {
-    const tarefasSalvas = localStorage.getItem('tarefas');
+    const tarefasSalvas = this.cookie.getCookie('tarefas');
     if (tarefasSalvas) {
       this.tarefas = JSON.parse(tarefasSalvas);
       if (this.tarefas.length > 0) {
@@ -116,20 +118,20 @@ export class TodoComponent {
       }
     }
 
-    const categoriasSalvas = localStorage.getItem('categorias');
+    const categoriasSalvas = this.cookie.getCookie('categorias');
     if (categoriasSalvas) {
       this.categorias = JSON.parse(categoriasSalvas);
     }
   }
 
   localStorage() {
-    localStorage.setItem('tarefas', JSON.stringify(this.tarefas));
+    this.cookie.setCookie('tarefas', JSON.stringify(this.tarefas), 1)
   }
 
   allowDrop(cate, event: Event){
    event.preventDefault();
    this.tarefaDrop.categoria = cate;
-   localStorage.setItem('tarefas', JSON.stringify(this.tarefas));
+   this.cookie.setCookie('tarefas', JSON.stringify(this.tarefas), 1)
   }
 
   drag(cate){

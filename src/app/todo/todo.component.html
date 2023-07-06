@@ -1,7 +1,18 @@
 <body>
   <header>
-    <h1 class="titulo">TODO APP</h1>
-  </header>
+    <div>
+        <div class="logo">
+            <a href="http://localhost:4200/registrar">Todo App</a>
+        </div>    
+    </div>
+
+    <div>
+        <div class="rotas">
+            <a href="http://localhost:4200/login">Logar</a>
+            <a href="http://localhost:4200/registrar">Registrar</a>
+        </div>
+    </div>
+</header>
   <br>
   <button><a routerLink="/categoria">Cadastrar categorias</a></button>
   <br>
@@ -12,7 +23,7 @@
     <select name="" id="" [(ngModel)]="tarefa.categoria">
       <option *ngFor="let categoria of categorias" [value]="categoria.nome">{{ categoria.nome }}</option>
     </select>
-    <button (click)="adicionarTarefa()" [disabled]="!hasPermission('Add')">Cadastrar</button>
+    <button (click)="adicionarTarefa()">Cadastrar</button>
   </div>
 
   <div class="tarefasAdicionadas">
@@ -27,8 +38,8 @@
               <br>
             </h3>
             <div style="display:flex; justify-content:center;">
-              <button (click)="editarTarefa()" [disabled]="!hasPermission('Edit')">Editar</button>
-              <button (click)="removerTarefa(trf.id)" [disabled]="!hasPermission('Remove')">Remover</button>
+              <button (click)="editarTarefa()" >Editar</button>
+              <button (click)="removerTarefa(trf.id)">Remover</button>
             </div>
           </div>
         </div>

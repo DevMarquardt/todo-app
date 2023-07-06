@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { CookieService } from "src/services/cookie.service";
 
 interface Categoria {
   idcate: number;
@@ -12,14 +13,20 @@ interface Tarefa {
 
 @Component({
   templateUrl: 'categoria.component.html',
+  styleUrls: ['categoria.component.css'] 
 })
 export class CategoriaComponent {
+  constructor(
+    private cookie: CookieService
+  ) {
+
+  }
   title = 'todo-app';
   categorias: Categoria[] = [];
   proximoId = 1;
   categoria = {
     nome: '',
-    
+
   };
   tarefas: Tarefa[] = [];
 
@@ -39,21 +46,21 @@ export class CategoriaComponent {
     this.categorias.push(novaCategoria);
     this.proximoId++;
     this.categoria.nome = '';
-    this.localStorage();
+    this.cookiee();
   }
 
   removerCategoria(idcate: number, id: number): void {
     let confirmar = confirm("Você tem certeza que deseja remover essa categoria?")
     if (confirmar) {
       this.categorias = this.categorias.filter(categoria => categoria.idcate !== idcate);
-      this.localStorage();
+      this.cookiee();
       this.tarefas = this.tarefas.filter(tarefa => tarefa.id !== id);
-      localStorage.setItem('tarefas', JSON.stringify(this.tarefas));
+      this.cookie.setCookie('categorias', JSON.stringify(this.categorias), 1)
     }
   }
 
   ngOnInit() {
-    const categoriasSalvas = localStorage.getItem('categorias');
+    const categoriasSalvas = this.cookie.getCookie('categorias');
     if (categoriasSalvas) {
       this.categorias = JSON.parse(categoriasSalvas);
       if (this.categorias.length > 0) {
@@ -61,9 +68,9 @@ export class CategoriaComponent {
       }
     }
   }
-  
 
-  localStorage() {
-    localStorage.setItem('categorias', JSON.stringify(this.categorias));
+
+  cookiee() {
+    this.cookie.setCookie('categorias', JSON.stringify(this.categorias), 1)
   }
 }
